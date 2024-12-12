@@ -1,16 +1,16 @@
-from managers.UserManager import UserManager
-from models.User import User
+from managers.user_manager import UserManager
+from models.user import User
 
 class LoginScene:
     def show():
         user_manager = UserManager()
 
         while True:
-            print("\n\nLogin Scene")
+            print("\n\nLogin")
             
             username_input = input("Enter username: ")
             password_input = input("Enter password: ")
-            option_input = int(input("1: Login\n2: Register\nSelect option: "))
+            option_input = int(input("1. Login\n3: Register\n9. Exit\nSelect option: "))
 
             match option_input:
                 case 1:
@@ -29,3 +29,5 @@ class LoginScene:
                     new_user = User(username_input, password_input)
                     user_manager.add_user(new_user)
                     print("User created")
+                case 9:
+                    pass #TODO
