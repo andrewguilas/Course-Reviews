@@ -2,15 +2,21 @@ from managers.user_manager import UserManager
 from models.user import User
 
 class LoginScene:
-    def show():
+    def show(self):
         user_manager = UserManager()
+        user_manager.add_user(User("admin", "pass"))
 
         while True:
             print("\n\nLogin")
             
             username_input = input("Enter username: ")
             password_input = input("Enter password: ")
-            option_input = int(input("1. Login\n3: Register\n9. Exit\nSelect option: "))
+
+            try:
+                option_input = int(input("1. Login\n2. Register\n3. Exit\nEnter option: "))
+            except ValueError:
+                print("Invalid input")
+                continue
 
             match option_input:
                 case 1:
@@ -29,5 +35,9 @@ class LoginScene:
                     new_user = User(username_input, password_input)
                     user_manager.add_user(new_user)
                     print("User created")
-                case 9:
+                case 3:
                     pass #TODO
+                case _:
+                    print("Invalid input")
+                    continue
+                

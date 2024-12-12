@@ -3,3 +3,11 @@ class Course:
         self.mnemonic = mnemonic
         self.number = number
         self.title = title
+
+    def __str__(self):
+        return "{} {} {}".format(
+            self.mnemonic,
+            self.number,
+            self.title
+        )
+    
