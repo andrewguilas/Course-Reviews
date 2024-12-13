@@ -18,6 +18,7 @@
 - [ ] Error handling at the GUI level as a popup
 - [ ] Implement a consistent theme
 - [ ] Add tooltips for better user experience
+- [x] Add basic styling (used ChatGPT to style)
 
 ## Login Scene
 - [x] Input username & password
