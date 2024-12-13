@@ -1,5 +1,4 @@
 import tkinter
-from tkinter import ttk
 from gui.course_list_scene import CourseListScene
 from managers.user_manager import UserManager
 from models.user import User
@@ -33,7 +32,8 @@ class LoginScene:
             self.set_status("Error: Incorrect password")
             return
         
-        CourseListScene().show()
+        self.hide()
+        CourseListScene().show(self.root)
 
     def register(self):
         username_input = self.username_field.get()
@@ -59,29 +59,38 @@ class LoginScene:
         self.set_status("Success: User created")
 
     def show(self, root):
-        title = ttk.Label(root, text="Login")
+        self.root = root
+        self.frame = tkinter.Frame(root)
+
+        title = tkinter.Label(self.frame, text="Login")
         title.grid(row=0)
 
-        username_text = ttk.Label(root, text="Username")
+        username_text = tkinter.Label(self.frame, text="Username")
         username_text.grid(row=1)
 
-        self.username_field = ttk.Entry(root)
+        self.username_field = tkinter.Entry(self.frame)
         self.username_field.grid(row=1, column=1)
 
-        password_text = ttk.Label(root, text="Password")
+        password_text = tkinter.Label(self.frame, text="Password")
         password_text.grid(row=2)
 
-        self.password_field = ttk.Entry(root, show="*")
+        self.password_field = tkinter.Entry(self.frame, show="*")
         self.password_field.grid(row=2, column=1)
 
-        login_button = ttk.Button(root, text="Log In", command=self.log_in)
+        login_button = tkinter.Button(self.frame, text="Log In", command=self.log_in)
         login_button.grid(row=3)
 
-        register_button = ttk.Button(root, text="Register", command=self.register)
+        register_button = tkinter.Button(self.frame, text="Register", command=self.register)
         register_button.grid(row=4)
 
-        self.status_text = ttk.Label(root)
+        self.status_text = tkinter.Label(self.frame)
         self.status_text.grid(row=5)
+
+        self.frame.pack()
+
+    def hide(self):
+        for element in self.root.winfo_children():
+            element.destroy()
 
     def set_status(self, text):
         self.status_text.config(text=text)
