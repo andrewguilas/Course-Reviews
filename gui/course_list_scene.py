@@ -1,12 +1,10 @@
 
 import tkinter
+from gui.scene import Scene
 from managers.course_manager import CourseManager
 from models.course import Course
 
-def strip_string(string):
-    return string.lower().strip().replace(" ", "")
-
-class CourseListScene:
+class CourseListScene(Scene):
     def __init__(self):
         self.displayed_courses = []
 
@@ -51,14 +49,14 @@ class CourseListScene:
         self.frame.pack_forget()
 
     def filter_courses(self, search_query):
-        search_query = strip_string(search_query)
+        search_query = self.strip_string(search_query)
 
         if search_query == "":
             self.displayed_courses = self.course_manager.get_courses()
         else:
             self.displayed_courses = []
             for course in self.course_manager.get_courses():
-                if (search_query in strip_string(str(course))):
+                if (search_query in self.strip_string(str(course))):
                     self.displayed_courses.append(course)
 
         self.show_courses()
