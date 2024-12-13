@@ -91,6 +91,7 @@ class LoginScene:
 
         self.password_field = tkinter.Entry(self.frame, show="*")
         self.password_field.grid(row=2, column=1)
+        self.password_field.bind('<Return>', lambda event: self.log_in())
 
         login_button = tkinter.Button(self.frame, text="Log In", command=self.log_in)
         login_button.grid(row=3)

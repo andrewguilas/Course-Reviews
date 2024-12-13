@@ -35,6 +35,7 @@ class NewCourseScene():
 
         self.title_field = tkinter.Entry(self.frame)
         self.title_field.grid(row=3, column=1)
+        self.title_field.bind('<Return>', lambda event: self.create_course())
 
         create_button = tkinter.Button(self.frame, text="Create", command=self.create_course)
         create_button.grid(row=4)
@@ -65,7 +66,7 @@ class NewCourseScene():
         self.highlight_field(self.number_field, False)
         self.highlight_field(self.title_field, False)
 
-        mnemonic_input = self.mnemonic_field.get()
+        mnemonic_input = strip_string(self.mnemonic_field.get())
         number_input = self.number_field.get()
         title_input = self.title_field.get()
 
