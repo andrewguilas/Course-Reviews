@@ -1,5 +1,4 @@
 import tkinter
-from gui.course_list_scene import CourseListScene
 from managers.user_manager import UserManager
 from models.user import User
 
@@ -32,8 +31,7 @@ class LoginScene:
             self.set_status("Error: Incorrect password")
             return
         
-        self.hide()
-        CourseListScene().show(self.root)
+        self.show_course_list_scene()
 
     def register(self):
         username_input = self.username_field.get()
@@ -58,9 +56,10 @@ class LoginScene:
 
         self.set_status("Success: User created")
 
-    def show(self, root):
-        self.root = root
-        self.frame = tkinter.Frame(root)
+    def show(self, app):
+        self.app = app
+        self.root = app.root
+        self.frame = tkinter.Frame(self.root)
 
         title = tkinter.Label(self.frame, text="Login")
         title.grid(row=0)
@@ -94,3 +93,7 @@ class LoginScene:
 
     def set_status(self, text):
         self.status_text.config(text=text)
+
+    def show_course_list_scene(self):
+        self.hide()
+        self.app.show_course_list_scene()

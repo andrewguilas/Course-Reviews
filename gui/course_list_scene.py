@@ -1,6 +1,7 @@
+
+import tkinter
 from managers.course_manager import CourseManager
 from models.course import Course
-import tkinter
 
 class CourseListScene:
     def __init__(self):
@@ -11,9 +12,10 @@ class CourseListScene:
         self.course_manager.add_course(Course("CS", "2100", "Data Structures and Algorithms 1"))
         self.course_manager.add_course(Course("CS", "2130", "Computer Systems and Organization 1"))
 
-    def show(self, root):
-        self.root = root
-        self.frame = tkinter.Frame(root)
+    def show(self, app):
+        self.app = app
+        self.root = self.app.root
+        self.frame = tkinter.Frame(self.root)
 
         search_query = tkinter.StringVar()
         search_query.trace_add("write", lambda name, index, mode, sv=search_query: self.filter_courses(search_query.get()))
@@ -25,6 +27,9 @@ class CourseListScene:
         self.listbox = tkinter.Listbox(self.frame)
         self.listbox.grid(row=1)
 
+        new_course_button = tkinter.Button(self.frame, text="New Course", command=self.show_new_course_scene)
+        new_course_button.grid(row=3)
+
         self.filter_courses("")
         self.frame.pack()
 
@@ -34,7 +39,6 @@ class CourseListScene:
 
     def filter_courses(self, search_query):
         search_query = strip_string(search_query)
-        print(search_query)
 
         if search_query == "":
             self.displayed_courses = self.course_manager.get_courses()
@@ -50,6 +54,10 @@ class CourseListScene:
         self.listbox.delete(0, "end")
         for course in self.displayed_courses:
             self.listbox.insert("end", course)
+
+    def show_new_course_scene(self):
+        self.hide()
+        self.app.show_new_course_scene()
 
 def strip_string(string):
     return string.lower().strip().replace(" ", "")
