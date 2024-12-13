@@ -18,25 +18,26 @@
 - [ ] Error handling at the GUI level as a popup
 - [ ] Implement a consistent theme
 - [ ] Add tooltips for better user experience
+- [x] Add basic styling (used ChatGPT to style)
 
 ## Login Scene
-- [ ] Input username & password
-- [ ] Login/register user
-- [ ] Check for valid username & password format
+- [x] Input username & password
+- [x] Login/register user
+- [x] Check for valid username & password format
 
 ## Course List Scene
-- [ ] List of all courses
-- [ ] Search by mnemonic, number, and title
+- [x] List of all courses
+- [x] Search by mnemonic, number, and title
 - [ ] Sort alphabetically, average rating, review counter, and more recent review
 - [ ] Average course rating
-- [ ] New course button
+- [x] New course button
 - [ ] My reviews button
 - [ ] Log off button 
 
 ## New Course Scene
-- [ ] Input course mnemonic, number, and title
-- [ ] Check for valid formats
-- [ ] Back button
+- [x] Input course mnemonic, number, and title
+- [x] Check for valid formats
+- [x] Back button
 - [ ] Log off button 
 
 ## Course Reviews Scene
