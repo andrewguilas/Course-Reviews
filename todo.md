@@ -64,3 +64,42 @@
 - View, edit, and delete users
 - View, edit, and delete courses
 - View, edit, and delete reviews
+
+## Proposed File Structure
+```
+course_review_app/
+│
+├── app.py                  # Main application file (Flask app setup and routing)
+├── requirements.txt        # Python dependencies (Flask, SQLite, etc.)
+├── config.py               # Configuration settings (e.g., database URL)
+│
+├── static/                  # Static files (e.g., CSS, JavaScript, images)
+│   ├── css/                 # CSS files
+│   │   └── style.css        # Styling for the app
+│   └── images/              # Image files for the app (e.g., logos)
+│
+├── templates/               # HTML templates (for rendering pages)
+│   ├── layout.html          # Base template (header, footer, navigation)
+│   ├── index.html           # Home page template
+│   ├── course_list.html     # Template to display all courses
+│   ├── course_detail.html   # Template to display course details and reviews
+│   └── login.html           # Login page template
+│
+├── database/                # SQL and database-related files
+│   ├── schema.sql           # SQL file to create the database schema (tables, etc.)
+│   └── db.py                # Python file to handle database operations (e.g., connect to DB)
+│
+├── models/                  # Python files for app logic
+│   ├── user.py              # User model (sign-up, login, etc.)
+│   ├── course.py            # Course model (course-related operations)
+│   └── review.py            # Review model (review-related operations)
+│
+├── migrations/              # Optional if using Alembic for DB migrations (for more advanced setups)
+│   └── versions/            # Directory for migration scripts
+│
+└── tests/                   # Unit tests for your app
+    ├── test_app.py          # Tests for app routes and logic
+    ├── test_models.py       # Tests for database models and logic
+    └── test_forms.py        # Tests for form validation and user input
+
+```
