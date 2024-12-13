@@ -46,6 +46,9 @@ class NewCourseScene():
         back_button = tkinter.Button(self.frame, text="Back", command=self.show_course_list_scene)
         back_button.grid(row=6)
 
+        log_off_button = tkinter.Button(self.frame, text="Log Off", command=self.show_login_scene)
+        log_off_button.grid(row=6, column=1)
+
     def show(self, app):
         self.app = app
         self.root = self.app.root
@@ -133,3 +136,7 @@ class NewCourseScene():
     def show_course_list_scene(self):
         self.hide()
         self.app.show_course_list_scene()
+
+    def show_login_scene(self):
+        self.hide()
+        self.app.show_login_scene()

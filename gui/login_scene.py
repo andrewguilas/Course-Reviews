@@ -42,6 +42,7 @@ class LoginScene:
             self.highlight_field(self.password_field, True)
             return
         
+        self.clear_fields()
         self.show_course_list_scene()
 
     def register(self):
@@ -97,10 +98,10 @@ class LoginScene:
         login_button.grid(row=3)
 
         register_button = tkinter.Button(self.frame, text="Register", command=self.register)
-        register_button.grid(row=4)
+        register_button.grid(row=3, column=1)
 
         self.status_text = tkinter.Label(self.frame)
-        self.status_text.grid(row=5)
+        self.status_text.grid(row=4)
 
     def show(self, app):
         self.app = app
@@ -113,6 +114,10 @@ class LoginScene:
 
     def hide(self):
         self.frame.pack_forget()
+
+    def clear_fields(self):
+        self.username_field.delete(0, "end")
+        self.password_field.delete(0, "end")
 
     def set_status(self, text):
         self.status_text.config(text=text)

@@ -3,6 +3,9 @@ import tkinter
 from managers.course_manager import CourseManager
 from models.course import Course
 
+def strip_string(string):
+    return string.lower().strip().replace(" ", "")
+
 class CourseListScene:
     def __init__(self):
         self.displayed_courses = []
@@ -26,7 +29,10 @@ class CourseListScene:
         self.listbox.grid(row=1)
 
         new_course_button = tkinter.Button(self.frame, text="New Course", command=self.show_new_course_scene)
-        new_course_button.grid(row=3)
+        new_course_button.grid(row=2)
+
+        log_off_button = tkinter.Button(self.frame, text="Log Off", command=self.show_login_scene)
+        log_off_button.grid(row=2, column=1)
 
     def show(self, app):
         self.app = app
@@ -63,5 +69,6 @@ class CourseListScene:
         self.hide()
         self.app.show_new_course_scene()
 
-def strip_string(string):
-    return string.lower().strip().replace(" ", "")
+    def show_login_scene(self):
+        self.hide()
+        self.app.show_login_scene()
