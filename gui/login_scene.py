@@ -74,10 +74,8 @@ class LoginScene:
         self.set_status("Success: User created")
         self.password_field.delete(0, "end")
 
-    def show(self, app):
-        self.app = app
-        self.root = app.root
-        self.frame = tkinter.Frame(self.root)
+    def build(self):
+        self.frame = tkinter.Frame(self.root, name="login_scene")
 
         title = tkinter.Label(self.frame, text="Login")
         title.grid(row=0)
@@ -103,11 +101,17 @@ class LoginScene:
         self.status_text = tkinter.Label(self.frame)
         self.status_text.grid(row=5)
 
+    def show(self, app):
+        self.app = app
+        self.root = app.root
+        
+        if not hasattr(self, 'frame'):
+            self.build()
+
         self.frame.pack()
 
     def hide(self):
-        for element in self.root.winfo_children():
-            element.destroy()
+        self.frame.pack_forget()
 
     def set_status(self, text):
         self.status_text.config(text=text)

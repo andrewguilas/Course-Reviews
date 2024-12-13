@@ -12,10 +12,8 @@ class CourseListScene:
         self.course_manager.add_course(Course("CS", "2100", "Data Structures and Algorithms 1"))
         self.course_manager.add_course(Course("CS", "2130", "Computer Systems and Organization 1"))
 
-    def show(self, app):
-        self.app = app
-        self.root = self.app.root
-        self.frame = tkinter.Frame(self.root)
+    def build(self):
+        self.frame = tkinter.Frame(self.root, name="course_list_scene")
 
         search_query = tkinter.StringVar()
         search_query.trace_add("write", lambda name, index, mode, sv=search_query: self.filter_courses(search_query.get()))
@@ -30,12 +28,18 @@ class CourseListScene:
         new_course_button = tkinter.Button(self.frame, text="New Course", command=self.show_new_course_scene)
         new_course_button.grid(row=3)
 
+    def show(self, app):
+        self.app = app
+        self.root = self.app.root
+
+        if not hasattr(self, 'frame'):
+            self.build()
+
         self.filter_courses("")
         self.frame.pack()
 
     def hide(self):
-        for element in self.root.winfo_children():
-            element.destroy()
+        self.frame.pack_forget()
 
     def filter_courses(self, search_query):
         search_query = strip_string(search_query)

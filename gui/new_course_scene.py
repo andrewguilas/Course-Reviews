@@ -12,11 +12,8 @@ class NewCourseScene():
     
         self.course_manager = CourseManager()
 
-    def show(self, app):
-        self.app = app
-        self.root = self.app.root
-
-        self.frame = tkinter.Frame(self.root)
+    def build(self):
+        self.frame = tkinter.Frame(self.root, name="new_course_scene")
 
         title = tkinter.Label(self.frame, text="New Course")
         title.grid(row=0)
@@ -48,11 +45,17 @@ class NewCourseScene():
         back_button = tkinter.Button(self.frame, text="Back", command=self.show_course_list_scene)
         back_button.grid(row=6)
 
+    def show(self, app):
+        self.app = app
+        self.root = self.app.root
+
+        if not hasattr(self, 'frame'):
+            self.build()
+
         self.frame.pack()
     
     def hide(self):
-        for element in self.root.winfo_children():
-            element.destroy()
+        self.frame.pack_forget()
 
     def set_status(self, text):
         self.status_text.config(text=text)
@@ -61,7 +64,7 @@ class NewCourseScene():
         self.highlight_field(self.mnemonic_field, False)
         self.highlight_field(self.number_field, False)
         self.highlight_field(self.title_field, False)
-        
+
         mnemonic_input = self.mnemonic_field.get()
         number_input = self.number_field.get()
         title_input = self.title_field.get()
