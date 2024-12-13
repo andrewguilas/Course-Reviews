@@ -79,38 +79,38 @@ class LoginScene:
         self.frame = tkinter.Frame(self.root, name="login_scene")
 
         title = tkinter.Label(self.frame, text="Login")
-        title.grid(row=0)
+        title.grid(row=0, column=0, columnspan=2, pady=(20, 10))  # Center and add vertical padding
 
         username_text = tkinter.Label(self.frame, text="Username")
-        username_text.grid(row=1)
+        username_text.grid(row=1, column=0, sticky="e", padx=(10, 5), pady=5)
 
         self.username_field = tkinter.Entry(self.frame)
-        self.username_field.grid(row=1, column=1)
+        self.username_field.grid(row=1, column=1, padx=(5, 10), pady=5, sticky="w")
 
         password_text = tkinter.Label(self.frame, text="Password")
-        password_text.grid(row=2)
+        password_text.grid(row=2, column=0, sticky="e", padx=(10, 5), pady=5)
 
         self.password_field = tkinter.Entry(self.frame, show="*")
-        self.password_field.grid(row=2, column=1)
+        self.password_field.grid(row=2, column=1, padx=(5, 10), pady=5, sticky="w")
         self.password_field.bind('<Return>', lambda event: self.log_in())
 
         login_button = tkinter.Button(self.frame, text="Log In", command=self.log_in)
-        login_button.grid(row=3)
+        login_button.grid(row=3, column=0, padx=(10, 5), pady=(10, 5))
 
         register_button = tkinter.Button(self.frame, text="Register", command=self.register)
-        register_button.grid(row=3, column=1)
+        register_button.grid(row=3, column=1, padx=(5, 10), pady=(10, 5))
 
-        self.status_text = tkinter.Label(self.frame)
-        self.status_text.grid(row=4)
+        self.status_text = tkinter.Label(self.frame, text="", wraplength=400)
+        self.status_text.grid(row=4, column=0, columnspan=2, pady=(10, 20))  # Center and add space
 
     def show(self, app):
         self.app = app
         self.root = app.root
-        
+
         if not hasattr(self, 'frame'):
             self.build()
 
-        self.frame.pack()
+        self.frame.pack(padx=20, pady=20)  # Padding around the entire scene
 
     def hide(self):
         self.frame.pack_forget()

@@ -21,18 +21,21 @@ class CourseListScene:
         search_query = tkinter.StringVar()
         search_query.trace_add("write", lambda name, index, mode, sv=search_query: self.filter_courses(search_query.get()))
 
+        search_label = tkinter.Label(self.frame, text="Search Courses:")
+        search_label.grid(row=0, column=0, sticky="e", padx=(10, 5), pady=5)
+
         self.search_field = tkinter.Entry(self.frame, textvariable=search_query)
-        self.search_field.grid(row=0)
+        self.search_field.grid(row=0, column=1, padx=(5, 10), pady=5, sticky="w")
         self.search_field.focus()
 
-        self.listbox = tkinter.Listbox(self.frame)
-        self.listbox.grid(row=1)
+        self.listbox = tkinter.Listbox(self.frame, width=50, height=15)
+        self.listbox.grid(row=1, column=0, columnspan=2, pady=(10, 20))
 
         new_course_button = tkinter.Button(self.frame, text="New Course", command=self.show_new_course_scene)
-        new_course_button.grid(row=2)
+        new_course_button.grid(row=2, column=0, padx=(10, 5), pady=10, sticky="e")
 
         log_off_button = tkinter.Button(self.frame, text="Log Off", command=self.show_login_scene)
-        log_off_button.grid(row=2, column=1)
+        log_off_button.grid(row=2, column=1, padx=(5, 10), pady=10, sticky="w")
 
     def show(self, app):
         self.app = app
@@ -42,7 +45,7 @@ class CourseListScene:
             self.build()
 
         self.filter_courses("")
-        self.frame.pack()
+        self.frame.pack(padx=20, pady=20)
 
     def hide(self):
         self.frame.pack_forget()
