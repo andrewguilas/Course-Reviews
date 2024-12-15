@@ -13,6 +13,8 @@ class App():
         self.course_reviews_scene = CourseReviewsScene()
         self.new_review_scene = NewReviewScene()
 
+        self.authenticated_user = None
+
         self.STYLES = {
             "*Font": "Arial 14",
             "*Label.Font": "Arial 16 bold",
@@ -41,19 +43,22 @@ class App():
         self.root.mainloop()
 
     def show_login_scene(self):
+        self.authenticated_user = None
         self.login_scene.show(self)
 
-    def show_course_list_scene(self):
+    def show_course_list_scene(self, *args):
+        if len(args) > 0: 
+            self.authenticated_user = args[0]
         self.course_list_scene.show(self)
 
     def show_new_course_scene(self):
         self.new_course_scene.show(self)
 
     def show_course_reviews_scene(self, course):
-        self.course_reviews_scene.show(self, course)
+        self.course_reviews_scene.show(self, course, self.authenticated_user)
 
-    def show_new_review_scene(self):
-        self.new_review_scene.show(self)
+    def show_new_review_scene(self, course):
+        self.new_review_scene.show(self, course, self.authenticated_user)
 
     def apply_styles(self):
         for name, value in self.STYLES.items():

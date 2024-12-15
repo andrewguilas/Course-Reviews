@@ -1,7 +1,13 @@
+import tkinter
+
+
 class Scene():
     def clear_fields(self, fields):
         for field in fields:
-            field.delete(0, "end")
+            if isinstance(field, tkinter.Entry):
+                field.delete(0, "end")
+            elif isinstance(field, tkinter.Text):
+                field.delete("1.0", "end")
 
     def highlight_field(self, field, is_error):
         ERROR_COLOR = 'pink'

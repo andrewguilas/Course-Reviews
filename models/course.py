@@ -12,5 +12,13 @@ class Course:
             self.title
         )
     
-    def getReviews(self):
+    def get_reviews(self):
         return self.reviews
+
+    def get_user_review(self, user):
+        for review in self.reviews:
+            if review.author == user:
+                return review
+
+    def add_review(self, review):
+        self.reviews.append(review)

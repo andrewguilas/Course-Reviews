@@ -15,19 +15,16 @@ class NewCourseScene(Scene):
 
         mnemonic_text = tkinter.Label(self.frame, text="Mnemonic")
         mnemonic_text.grid(row=1, column=0, sticky="e", padx=(10, 5), pady=5)
-
         self.mnemonic_field = tkinter.Entry(self.frame)
         self.mnemonic_field.grid(row=1, column=1, padx=(5, 10), pady=5, sticky="w")
 
         number_text = tkinter.Label(self.frame, text="Number")
         number_text.grid(row=2, column=0, sticky="e", padx=(10, 5), pady=5)
-
         self.number_field = tkinter.Entry(self.frame)
         self.number_field.grid(row=2, column=1, padx=(5, 10), pady=5, sticky="w")
 
         title_text = tkinter.Label(self.frame, text="Title")
         title_text.grid(row=3, column=0, sticky="e", padx=(10, 5), pady=5)
-
         self.title_field = tkinter.Entry(self.frame)
         self.title_field.grid(row=3, column=1, padx=(5, 10), pady=5, sticky="w")
         self.title_field.bind('<Return>', lambda event: self.create_course())
@@ -116,6 +113,7 @@ class NewCourseScene(Scene):
         
         self.set_status(f"Success: Added {new_course}")
         self.clear_fields([self.mnemonic_field, self.number_field, self.title_field])
+        self.set_status("")
 
     def set_status(self, text):
         self.status_text.config(text=text)

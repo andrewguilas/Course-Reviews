@@ -19,6 +19,7 @@ class LoginScene(Scene):
 
         self.username_field = tkinter.Entry(self.frame)
         self.username_field.grid(row=1, column=1, padx=(5, 10), pady=5, sticky="w")
+        self.username_field.focus()
 
         password_text = tkinter.Label(self.frame, text="Password")
         password_text.grid(row=2, column=0, sticky="e", padx=(10, 5), pady=5)
@@ -82,7 +83,8 @@ class LoginScene(Scene):
             return
         
         self.clear_fields([self.username_field, self.password_field])
-        self.show_course_list_scene()
+        self.set_status("")
+        self.show_course_list_scene(user)
 
     def register(self):
         self.highlight_field(self.username_field, False)
@@ -116,6 +118,6 @@ class LoginScene(Scene):
     def set_status(self, text):
         self.status_text.config(text=text)
 
-    def show_course_list_scene(self):
+    def show_course_list_scene(self, authenticated_user):
         self.hide()
-        self.app.show_course_list_scene()
+        self.app.show_course_list_scene(authenticated_user)
