@@ -10,5 +10,9 @@ class Scene():
         color = ERROR_COLOR if is_error else DEFAULT_COLOR
         field.config(bg=color)
 
+    def clear_frame(self, frame):
+        for widget in frame.winfo_children():
+            widget.destroy()
+
     def strip_string(self, string):
         return string.lower().strip().replace(" ", "")

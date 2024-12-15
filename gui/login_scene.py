@@ -68,6 +68,7 @@ class LoginScene(Scene):
             self.highlight_field(self.password_field, True)
             return
 
+        username_input = username_input.lower()
         user = self.user_manager.get_user(username_input)
         if not user:
             self.set_status("Error: User does not exist")
@@ -101,7 +102,6 @@ class LoginScene(Scene):
             return
 
         username_input = username_input.lower()
-
         if self.user_manager.get_user(username_input):
             self.set_status("Error: Username already used")
             self.highlight_field(self.username_field, True)
@@ -110,7 +110,7 @@ class LoginScene(Scene):
         new_user = User(username_input, password_input)
         self.user_manager.add_user(new_user)
 
-        self.set_status("Success: User created")
+        self.set_status("Success: Account created")
         self.password_field.delete(0, "end")
 
     def set_status(self, text):

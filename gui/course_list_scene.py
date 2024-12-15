@@ -26,8 +26,8 @@ class CourseListScene(Scene):
         self.search_field.grid(row=0, column=1, padx=(5, 10), pady=5, sticky="w")
         self.search_field.focus()
 
-        self.listbox = tkinter.Listbox(self.frame, width=50, height=15)
-        self.listbox.grid(row=1, column=0, columnspan=2, pady=(10, 20))
+        self.courses_frame = tkinter.Frame(self.frame, width=200, bg="white")
+        self.courses_frame.grid(row=1, column=0, columnspan=2, pady=(10, 20), sticky="nswe")
 
         new_course_button = tkinter.Button(self.frame, text="New Course", command=self.show_new_course_scene)
         new_course_button.grid(row=2, column=0, padx=(10, 5), pady=10, sticky="e")
@@ -62,9 +62,23 @@ class CourseListScene(Scene):
         self.show_courses()
 
     def show_courses(self):
-        self.listbox.delete(0, "end")
-        for course in self.displayed_courses:
-            self.listbox.insert("end", course)
+        self.clear_frame(self.courses_frame)
+        for i, course in enumerate(self.displayed_courses):
+           button = tkinter.Button(
+                self.courses_frame, 
+                text=course, 
+                command=lambda c=course: self.show_course_reviews_scene(c), 
+                anchor='w', # left align
+                relief=tkinter.FLAT,  # flat border style
+                background="white",
+                foreground="black",
+                highlightthickness=0  # remove the highlight border
+            )
+           button.grid(row=i, column=0, sticky="ew")
+
+    def show_course_reviews_scene(self, course):
+        self.hide()
+        self.app.show_course_reviews_scene(course)
 
     def show_new_course_scene(self):
         self.hide()

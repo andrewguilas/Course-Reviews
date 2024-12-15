@@ -110,6 +110,7 @@ class NewCourseScene(Scene):
             self.highlight_field(self.title_field, True)
             return
         
+        mnemonic_input = mnemonic_input.upper()
         new_course = Course(mnemonic_input, number_input, title_input)
         self.course_manager.add_course(new_course)
         

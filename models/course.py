@@ -3,6 +3,7 @@ class Course:
         self.mnemonic = mnemonic
         self.number = number
         self.title = title
+        self.reviews = []
 
     def __str__(self):
         return "{} {} {}".format(
@@ -11,3 +12,5 @@ class Course:
             self.title
         )
     
+    def getReviews(self):
+        return self.reviews
