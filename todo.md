@@ -32,27 +32,27 @@
 - [ ] Average course rating
 - [x] New course button
 - [ ] My reviews button
-- [ ] Log off button 
+- [x] Log off button 
 
 ## New Course Scene
 - [x] Input course mnemonic, number, and title
 - [x] Check for valid formats
 - [x] Back button
-- [ ] Log off button 
+- [x] Log off button 
 
 ## Course Reviews Scene
-- [ ] List of all reviews for a specific course
+- [x] List of all reviews for a specific course
 - [ ] Sort by rating and date
 - [ ] Edit/delete button for current user's reviews and confirmation dialogue
-- [ ] New review button
-- [ ] Back button
-- [ ] Log off button 
+- [x] New review button
+- [x] Back button
+- [x] Log off button 
 
 ## New Review Scene
-- [ ] Input rating and comment
-- [ ] Check for valid formats
-- [ ] Back button
-- [ ] Log off button 
+- [x] Input rating and comment
+- [x] Check for valid formats
+- [x] Back button
+- [x] Log off button 
 
 ## My Reviews Scene
 - [ ] List of all reviews for the current user
